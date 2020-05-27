@@ -76,16 +76,16 @@ const formSubmit = e => {
     >
       {({ errors, touched }) => (
         <Form>
-          <Field name="firstName" />
+          <Field name="firstName" type="text" placeholder="Name"/>
           {errors.firstName && touched.firstName ? (
             <div>{errors.firstName}</div>
           ) : null}
-          <Field name="password" />
+          <Field name="email" type="email" placeholder="Email"/>
+          {errors.email && touched.email ? <div>{errors.email}</div> : null}
+          <Field name="password" type="password" placeholder="Password"/>
           {errors.password && touched.password ? (
             <div>{errors.password}</div>
           ) : null}
-          <Field name="email" type="email" />
-          {errors.email && touched.email ? <div>{errors.email}</div> : null}
           <button type="submit">Submit</button>
         </Form>
       )}
