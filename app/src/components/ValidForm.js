@@ -6,14 +6,14 @@ import { Formik, Field, Form } from 'formik'
 import axios from 'axios';
 
 
-export default function ValidForm() {
+export default function ValidForm(props) {
 const sentData = { data: "Hello World!" };
 
 
-  const [post, setPost] = useState([]);
+  // const [post, setPost] = useState([]);
 
 
-const formSubmit = e => {
+const formSubmit = (e) => {
     e.preventDefault();
     console.log("submitted");
     axios
@@ -54,23 +54,19 @@ const formSubmit = e => {
       .required('Required'),
   });
 
-  // useEffect(() => {
-  //   formSchema.isValid(formState).then(valid => {
-  //     setButtonDisabled(!valid);
-  //   });
-  // }, [formState]);
-
     return (
         <div>
             <Formik
       initialValues={{
         firstName: '',
-        password: '',
         email: '',
+        password: '',
       }}
       validationSchema={SignupSchema}
       onSubmit={values => {
         // same shape as initial values
+        console.log(props.users)
+        props.setUsers([values, ...props.users])
         console.log(values);
       }}
     >
